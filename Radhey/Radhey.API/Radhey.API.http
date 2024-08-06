@@ -1,0 +1,6 @@
+@Radhey.API_HostAddress = http://localhost:5187
+
+GET {{Radhey.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
