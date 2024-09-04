@@ -72,5 +72,57 @@ namespace Radhey.API.Controllers
             }
             return BadRequest(apiResponse);
         }
+
+        [HttpPost]
+        [Route("UserLogin")]
+        public async Task<IActionResult> UserLogin(UserLogin__Req_Model userLogin)
+        {
+            ResponseComModel<object> apiResponse;
+
+            if (ModelState.IsValid)
+            {
+                apiResponse = await _accountBal.UserLogin__BAL(userLogin);
+
+                switch (apiResponse.StatusCode)
+                {
+                    case (int)ResponseEnum.okResponse: apiResponse = new ResponseComModel<object>
+                    {
+                        StatusCode = apiResponse.StatusCode,
+                        IsSuccess = true,
+                        StatusMessage = "User Successfully Login",
+                        Data = apiResponse.Data
+                        
+                    };
+                    return Ok(apiResponse);
+                    case (int)ResponseEnum.BadRequest: apiResponse = new ResponseComModel<object>
+                    {
+                        StatusCode = apiResponse.StatusCode,
+                        IsSuccess = false,
+                        StatusMessage = "User Login Failed",
+                        Data = apiResponse.Data
+
+                    };
+                    return BadRequest(apiResponse);
+                    default: apiResponse = new ResponseComModel<object>()
+                    {
+                        StatusCode = apiResponse.StatusCode,
+                        IsSuccess = false,
+                        StatusMessage = "Internal Server Error",
+                        Data = apiResponse.Data
+                    };
+                    return BadRequest(apiResponse);
+                }
+            }
+            else
+            {
+                apiResponse = new ResponseComModel<object>()
+                {
+                    StatusCode = (int)ResponseEnum.BadRequest,
+                    IsSuccess = false,
+                    StatusMessage = "Internal Server Error",
+                };
+            }
+            return BadRequest(apiResponse);
+        }        
     }
 }

@@ -15,6 +15,7 @@ using Radhey.Repository.Interface;
 using Radhey.Repository.Interface.IdentityRepo;
 
 
+
 namespace Radhey.BAL.Implementation.IdentityBAL
 {
     public class AccountIdentityBAL : IAccountIdentityBAL 
@@ -36,6 +37,17 @@ namespace Radhey.BAL.Implementation.IdentityBAL
             return responseComModel;
 
         }
+
+        public async Task<ResponseComModel<object>> UserLogin__BAL(UserLogin__Req_Model userLogin__Req_Model)
+        {
+            var response = new ResponseComModel<object>();
+
+            response = await _accountRepo.UserLogin__Repo(userLogin__Req_Model);
+
+            return response;
+        }
+
+
 
 
     }
