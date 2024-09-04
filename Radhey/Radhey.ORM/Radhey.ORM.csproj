@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Radhey.DAL\Radhey.DAL.csproj" />
+    <ProjectReference Include="..\Radhey.Model\Radhey.Model.csproj" />
+  </ItemGroup>
+
 </Project>
