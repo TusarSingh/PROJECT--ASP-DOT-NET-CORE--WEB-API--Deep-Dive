@@ -85,7 +85,7 @@ namespace Radhey.ORM.Identity__By__EFC.Implementation
 
             if (allUser == null)
             {
-                response.StatusCode = 401;
+                response.StatusCode = 400;
             }
             else
             {

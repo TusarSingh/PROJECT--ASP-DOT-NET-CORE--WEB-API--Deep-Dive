@@ -18,7 +18,8 @@ using Radhey.Repository.Interface.IdentityRepo.UserRegistration;
 using Radhey.Repository.Implementation.IdentityRepo.UserRegistration;
 using Radhey.Repository.Interface.IdentityRepo.UserLogin;
 using Radhey.Repository.Implementation.IdentityRepo.UserLogin;
-
+using Radhey.Repository.Interface.IdentityRepo.AllUser;
+using Radhey.Repository.Implementation.IdentityRepo.AllUsers;
  
 using Radhey.ORM;
 using Radhey.ORM.Identity__By__EFC;
@@ -48,7 +49,7 @@ builder.Services.AddScoped<IAccountIdentityRepo, AccountIdentityRepo>();
 
 builder.Services.AddTransient<IUserRegistrationIdentityRepo, UserRegistrationIdentityRepo>();
 builder.Services.AddTransient<IUserLoginIdentityRepo, UserLoginIdentityRepo>();
-
+builder.Services.AddTransient<IAllUsersIdentityRepo, AllUsersIdentityRepo>();   
 
 
 builder.Services.AddTransient<ICustom__SignInManager, Custom__SignInManager>();

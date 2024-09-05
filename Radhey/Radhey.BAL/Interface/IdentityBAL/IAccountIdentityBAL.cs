@@ -17,5 +17,8 @@ namespace Radhey.BAL.Interface.IdentityBAL
 
         public Task<ResponseComModel<object>> UserLogin__BAL(UserLogin__Req_Model userLogin__Req_Model);
 
+        public Task<ResponseComModel<object>> AllUsers__BAL();
+
+
     }
 }

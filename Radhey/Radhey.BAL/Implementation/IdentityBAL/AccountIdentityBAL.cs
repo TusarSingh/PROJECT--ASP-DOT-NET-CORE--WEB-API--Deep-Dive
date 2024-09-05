@@ -47,6 +47,15 @@ namespace Radhey.BAL.Implementation.IdentityBAL
             return response;
         }
 
+        public async Task<ResponseComModel<object>> AllUsers__BAL()
+        {
+            var response = new ResponseComModel<object>();
+
+            response = await _accountRepo.AllUsers__Repo().ConfigureAwait(false); ;
+
+            return response;
+        }
+
 
 
 

@@ -123,6 +123,59 @@ namespace Radhey.API.Controllers
                 };
             }
             return BadRequest(apiResponse);
+        }       
+        
+        [HttpGet]
+        [Route("GetAllUsers")]
+        public async Task<IActionResult> AllUsers()
+        {
+            ResponseComModel<object> apiResponse;
+
+            if (ModelState.IsValid)
+            {
+                apiResponse = await _accountBal.AllUsers__BAL().ConfigureAwait(false);
+
+
+                switch (apiResponse.StatusCode)
+                {
+                    case (int)ResponseEnum.okResponse: apiResponse = new ResponseComModel<object>
+                    {
+                        StatusCode = apiResponse.StatusCode,
+                        IsSuccess = true,
+                        StatusMessage = "All Users Details",
+                        Data = apiResponse.Data
+                        
+                    };
+                    return Ok(apiResponse);
+                    case (int)ResponseEnum.BadRequest: apiResponse = new ResponseComModel<object>
+                    {
+                        StatusCode = apiResponse.StatusCode,
+                        IsSuccess = false,
+                        StatusMessage = "Some Details Failed",
+                        Data = apiResponse.Data
+
+                    };
+                    return BadRequest(apiResponse);
+                    default: apiResponse = new ResponseComModel<object>()
+                    {
+                        StatusCode = apiResponse.StatusCode,
+                        IsSuccess = false,
+                        StatusMessage = "Internal Server Error",
+                        Data = apiResponse.Data
+                    };
+                    return BadRequest(apiResponse);
+                }
+            }
+            else
+            {
+                apiResponse = new ResponseComModel<object>()
+                {
+                    StatusCode = (int)ResponseEnum.BadRequest,
+                    IsSuccess = false,
+                    StatusMessage = "Internal Server Error",
+                };
+            }
+            return BadRequest(apiResponse);
         }        
     }
 }

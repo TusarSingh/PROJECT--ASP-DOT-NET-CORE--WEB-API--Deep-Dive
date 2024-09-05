@@ -15,6 +15,8 @@ namespace Radhey.Repository.Interface.IdentityRepo
         public Task<ResponseComModel> UserRegistration__Repo(UserRegistration__Req_Model userRegistration__Req_Model);
 
         public Task<ResponseComModel<object>> UserLogin__Repo(UserLogin__Req_Model login__Req_Model);
+        public Task<ResponseComModel<object>> AllUsers__Repo();
+
 
     }
 }
