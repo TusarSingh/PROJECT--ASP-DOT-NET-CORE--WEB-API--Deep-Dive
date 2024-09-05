@@ -19,6 +19,14 @@ namespace Radhey.DAL.DatabaseContext
         {
         }
 
+
+
+
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseSqlServer("DefaultConnection");
+        //}
+
 #nullable disable
         public DbSet<TblApplicationUser> AspNetUsers { get; set; }
 

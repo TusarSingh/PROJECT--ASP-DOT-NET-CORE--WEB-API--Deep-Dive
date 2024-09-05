@@ -4,23 +4,33 @@ using Microsoft.EntityFrameworkCore;
 
 using Radhey.BAL;
 using Radhey.BAL.Interface;
-using Radhey.BAL.Implementation;
 using Radhey.BAL.Interface.IdentityBAL;
+using Radhey.BAL.Interface.EFCBAL;
+using Radhey.BAL.Implementation;
 using Radhey.BAL.Implementation.IdentityBAL;
-
+using Radhey.BAL.Implementation.EFCBAL;
 
 using Radhey.Repository;
 using Radhey.Repository.Interface;
-using Radhey.Repository.Implementation;
 using Radhey.Repository.Interface.IdentityRepo;
-using Radhey.Repository.Implementation.IdentityRepo;
 using Radhey.Repository.Interface.IdentityRepo.UserRegistration;
-using Radhey.Repository.Implementation.IdentityRepo.UserRegistration;
 using Radhey.Repository.Interface.IdentityRepo.UserLogin;
-using Radhey.Repository.Implementation.IdentityRepo.UserLogin;
 using Radhey.Repository.Interface.IdentityRepo.AllUser;
+using Radhey.Repository.Interface.EFCRepo;
+using Radhey.Repository.Interface.EFCRepo.UserRegistration;
+
+
+using Radhey.Repository.Implementation;
+using Radhey.Repository.Implementation.IdentityRepo;
+using Radhey.Repository.Implementation.IdentityRepo.UserRegistration;
+using Radhey.Repository.Implementation.IdentityRepo.UserLogin;
 using Radhey.Repository.Implementation.IdentityRepo.AllUsers;
- 
+using Radhey.Repository.Implementation.EFCRepo;
+using Radhey.Repository.Implementation.EFCRepo.UserRegistration;
+
+
+
+
 using Radhey.ORM;
 using Radhey.ORM.Identity__By__EFC;
 using Radhey.ORM.Identity__By__EFC.Interface;
@@ -44,12 +54,16 @@ builder.Services.AddControllers();
 
 
 builder.Services.AddScoped<IAccountIdentityBAL, AccountIdentityBAL>();
-
 builder.Services.AddScoped<IAccountIdentityRepo, AccountIdentityRepo>();
 
 builder.Services.AddTransient<IUserRegistrationIdentityRepo, UserRegistrationIdentityRepo>();
 builder.Services.AddTransient<IUserLoginIdentityRepo, UserLoginIdentityRepo>();
 builder.Services.AddTransient<IAllUsersIdentityRepo, AllUsersIdentityRepo>();   
+
+builder.Services.AddScoped<IAccountEFCBAL, AccountEFCBAL>();
+builder.Services.AddScoped<IAccountEFCRepo, AccountEFCRepo>();
+
+builder.Services.AddTransient<IUserRegistrationEFCRepo, UserRegistrationEFCRepo>();
 
 
 builder.Services.AddTransient<ICustom__SignInManager, Custom__SignInManager>();
