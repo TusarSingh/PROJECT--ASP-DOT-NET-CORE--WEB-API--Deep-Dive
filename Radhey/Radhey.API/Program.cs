@@ -18,7 +18,7 @@ using Radhey.Repository.Interface.IdentityRepo.UserLogin;
 using Radhey.Repository.Interface.IdentityRepo.AllUser;
 using Radhey.Repository.Interface.EFCRepo;
 using Radhey.Repository.Interface.EFCRepo.UserRegistration;
-
+using Radhey.Repository.Interface.EFCRepo.UserLogin;
 
 using Radhey.Repository.Implementation;
 using Radhey.Repository.Implementation.IdentityRepo;
@@ -27,7 +27,7 @@ using Radhey.Repository.Implementation.IdentityRepo.UserLogin;
 using Radhey.Repository.Implementation.IdentityRepo.AllUsers;
 using Radhey.Repository.Implementation.EFCRepo;
 using Radhey.Repository.Implementation.EFCRepo.UserRegistration;
-
+using Radhey.Repository.Implementation.EFCRepo.UserLogin;
 
 
 
@@ -35,6 +35,11 @@ using Radhey.ORM;
 using Radhey.ORM.Identity__By__EFC;
 using Radhey.ORM.Identity__By__EFC.Interface;
 using Radhey.ORM.Identity__By__EFC.Implementation;
+using Radhey.ORM.Linq;
+using Radhey.ORM.Linq.Interface;
+using Radhey.ORM.Linq.Implementation;
+
+
 
 
 using Radhey.DAL.DatabaseContext;
@@ -64,12 +69,12 @@ builder.Services.AddScoped<IAccountEFCBAL, AccountEFCBAL>();
 builder.Services.AddScoped<IAccountEFCRepo, AccountEFCRepo>();
 
 builder.Services.AddTransient<IUserRegistrationEFCRepo, UserRegistrationEFCRepo>();
-
+builder.Services.AddTransient<IUserLoginEFCRepo, UserLoginEFCRepo>();
 
 builder.Services.AddTransient<ICustom__SignInManager, Custom__SignInManager>();
 builder.Services.AddTransient<ICustom__UserManager, Custom__UserManager>();
 
-
+builder.Services.AddTransient<ICustom__Linq,Custom__Linq>();
 
 
 

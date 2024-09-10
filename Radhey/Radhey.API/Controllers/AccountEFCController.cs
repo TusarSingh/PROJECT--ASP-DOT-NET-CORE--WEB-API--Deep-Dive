@@ -72,9 +72,54 @@ namespace Radhey.API.Controllers
             }
             return BadRequest(apiResponse);
         }
+        
+        [HttpPost]
+        [Route("UserLogin")]
+        public async Task<IActionResult> UserLogin(UserLogin__Req_Model userLogin__Req_Model)
+        {
+            ResponseComModel<object> apiResponse;
 
+            if(ModelState.IsValid)
+            {
+                apiResponse = await _accountEFCBAL.UserLogin__BAL(userLogin__Req_Model).ConfigureAwait(false);
 
-
-
+                switch (apiResponse.StatusCode)
+                {
+                    case 200:apiResponse = new ResponseComModel<object>()
+                    {
+                        StatusCode = apiResponse.StatusCode,
+                        IsSuccess = true,
+                        StatusMessage = "User Login Successfully",
+                        Data = apiResponse.Data
+                        
+                    };
+                    return Ok(apiResponse);
+                    case 400:apiResponse = new ResponseComModel<object>()
+                    {
+                        StatusCode = apiResponse.StatusCode,
+                        IsSuccess = true,
+                        StatusMessage = "User Login Failed"
+                    };
+                    return BadRequest(apiResponse);
+                    default:apiResponse = new ResponseComModel<object>()
+                    {
+                        StatusCode = apiResponse.StatusCode,
+                        IsSuccess = true,
+                        StatusMessage = "Internal Server Error"
+                    };
+                    return Ok(apiResponse);
+                } 
+            }
+            else
+            {
+                apiResponse = new ResponseComModel<object>()
+                {
+                    StatusCode = 400,
+                    IsSuccess = true,
+                    StatusMessage = "Internal Server Error"
+                };
+            }
+            return BadRequest(apiResponse);
+        }
     }
 }

@@ -42,6 +42,14 @@ namespace Radhey.BAL.Implementation.EFCBAL
             return response;
         }
 
+        public async Task<ResponseComModel<object>> UserLogin__BAL(UserLogin__Req_Model userLogin__Req_Model)
+        {
+            ResponseComModel<object> response;
+
+            response = await _accountEFCRepo.UserLogin__Repo(userLogin__Req_Model);
+
+            return response;
+        }
 
 
 
